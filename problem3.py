@@ -52,9 +52,9 @@ def random_walk_one_step(P, x_i):
     ## INSERT YOUR CODE HERE
     product = []
     for i in range(len(P)):
-        product.append(0)
+        product.append(0.)
         for j in range(len(P)):
-            product[i] += P[i][j] * x_i[i]
+            product[i] += P[i][j] * x_i[j]
     x_i_plus_1 = np.array(product)
     #########################################
     return x_i_plus_1
@@ -76,8 +76,8 @@ def random_walk(P, x_0, max_steps=10000):
     #########################################
     ## INSERT YOUR CODE HERE
     current_vector = x_0
-    n_steps = 0
-    for i in range(5):
+    n_steps = 1
+    for i in range(max_steps):
         new_vector = random_walk_one_step(P, current_vector)
         if np.allclose(current_vector, new_vector):
             break
