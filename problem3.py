@@ -84,8 +84,6 @@ def random_walk(P, x_0, max_steps=10000):
         else:
             current_vector = new_vector
             n_steps += 1
-    print n_steps
-    print current_vector
     x = np.array(current_vector)
     #########################################
     return x, n_steps
