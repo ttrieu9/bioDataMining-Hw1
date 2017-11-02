@@ -30,11 +30,21 @@ def compute_G(A, alpha = 0.95):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
+    node_fix = compute_S(A)
+    region = []
+    for i in range(len(A)):
+        region.append([])
+        for j in range(len(A)):
+            region[i].append(1./len(A))
 
+    alpha_s = [i * alpha for i in node_fix]
+    alpha_n = []
+    for i in range(len(A)):
+        alpha_n.append([])
+        for j in range(len(A)):
+            alpha_n[i].append(region[i][j] * (1.0 - alpha))
 
-
-
-
+    G = np.add(alpha_s, np.array(alpha_n))
     #########################################
     return G
 
