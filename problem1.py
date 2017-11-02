@@ -33,6 +33,9 @@ def swap( A, i, j ):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
+    temp = A[i]
+    A[i] = A[j]
+    A[j] = temp
 
 
 
