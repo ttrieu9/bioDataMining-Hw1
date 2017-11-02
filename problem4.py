@@ -22,13 +22,24 @@ def compute_S(A):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
+    transition = []
+    denominators = []
+    for i in range(len(A)):
+        denominators.append(0)
+        transition.append([])
+        for j in range(len(A)):
+            transition[i].append(0)
+            if A[j][i] == 1:
+                denominators[i] += 1
 
-
-
-
-
-
-
+    for i in range(len(A)):
+        for j in range(len(A)):
+            if denominators[i] == 0:
+                transition[j][i] = 1./len(A)
+            else:
+                transition[j][i] = A[j][i]/denominators[i]
+     
+    S = np.array(transition)
     #########################################
     return S
 
