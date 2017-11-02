@@ -24,9 +24,13 @@ def matrix_vector_multiplication(X, y):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
+    product = []
 
+    for x in range(len(X)):
+        product.append(0)
+        for i in range(len(X[0])):
+            product[x] += X[x][i] * y[i]
 
-
-
+    return np.array(product)
     #########################################
 
