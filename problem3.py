@@ -17,10 +17,22 @@ def compute_P(A):
     The values in each column of matrix P should sum to 1.
     '''
     #########################################
-    ## INSER YOUR CODE HERE
+    ## INSERT YOUR CODE HERE
+    transition = []
+    denominators = []
+    for i in range(len(A)):
+        denominators.append(0)
+        transition.append([])
+        for j in range(len(A)):
+            transition[i].append(0)
+            if A[j][i] == 1:
+                denominators[i] += 1
 
-
-
+    for i in range(len(A)):
+        for j in range(len(A)):
+            transition[j][i] = A[j][i]/denominators[i]
+        
+    P = np.array(transition)
     #########################################
     return P
 
@@ -38,10 +50,12 @@ def random_walk_one_step(P, x_i):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
-
-
-
-
+    product = []
+    for i in range(len(P)):
+        product.append(0)
+        for j in range(len(P)):
+            product[i] += P[i][j] * x_i[i]
+    x_i_plus_1 = np.array(product)
     #########################################
     return x_i_plus_1
 
@@ -61,12 +75,18 @@ def random_walk(P, x_0, max_steps=10000):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
-
-
-
-
-
-
+    current_vector = x_0
+    n_steps = 0
+    for i in range(5):
+        new_vector = random_walk_one_step(P, current_vector)
+        if np.allclose(current_vector, new_vector):
+            break
+        else:
+            current_vector = new_vector
+            n_steps += 1
+    print n_steps
+    print current_vector
+    x = np.array(current_vector)
     #########################################
     return x, n_steps
 
