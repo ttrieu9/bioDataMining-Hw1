@@ -1,5 +1,8 @@
 import numpy as np
+from numpy import genfromtxt
 from problem5 import pagerank 
+from problem1 import swap
+import csv
 
 #-------------------------------------------------------------------------
 '''
@@ -22,11 +25,13 @@ def import_A(filename ='network.csv'):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
-
-
-
-
-
+    with open('network.csv', 'rb') as file:
+        reader = csv.reader(file)
+        A = list(reader)
+        for i in range(len(A)):
+            for j in range(len(A)):
+                A[i][j] = float(A[i][j])
+        A = np.asarray(A)
     #########################################
     return A
 
@@ -43,11 +48,21 @@ def score2rank(x):
     '''
     #########################################
     ## INSERT YOUR CODE HERE
+    sorted_ids= []
+    countdown = len(x)
+    min_id = 0
+    for i in range(len(x)):
+        if x[i][0] < x[min_id][0]:
+            min_id = i
 
-
-
-
-
+    while countdown > 0:
+        max_id = min_id
+        for i in range(len(x)):
+            if x[i][0] > x[max_id][0] and i not in sorted_ids:
+                max_id = i
+        print max_id
+        sorted_ids.append(max_id)
+        countdown -= 1
     #########################################
     return sorted_ids
 
